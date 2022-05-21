@@ -1,7 +1,7 @@
 from sys import exit
 import requests
 
-link = input('Digite a pagina:')
+link = input('Digite a pagina (insira o link completo):')
 page = requests.get(link)
 
 print(f'Status da página: {page.status_code}')
@@ -34,10 +34,14 @@ with open ('texts/wordlist.txt', 'r') as reader:
             test = str(link + lines[i])
             page = requests.get(test)
 
-            if page.status_code >= 200 and page.status_code <= 299:
-                print(f'=> {test}: funcionou')
+            if page.status_code >= 100 and page.status_code <= 199:
+                print(f'&> {test}: info ({page.status_code})')
+            elif page.status_code >= 200 and page.status_code <= 299:
+                print(f'=> {test}: funcionou ({page.status_code})')
+            elif page.status_code >= 300 and page.status_code <= 399:
+                print(f'~> {test}: redirecionamento ({page.status_code})')
             else:
-                print(f'-> {test}: não funcionou')
+                print(f'-> {test}: não funcionou ({page.status_code})')
         
             i += 1
         except IndexError:
