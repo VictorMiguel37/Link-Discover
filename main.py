@@ -1,6 +1,8 @@
 from sys import exit
 import requests
 
+worked = []  # Funcionou
+dworked = [] # Não funcionou
 link = input('Digite a pagina (insira o link completo):')
 page = requests.get(link)
 
@@ -38,13 +40,33 @@ with open ('texts/wordlist.txt', 'r') as reader:
                 print(f'&> {test}: info ({page.status_code})')
             elif page.status_code >= 200 and page.status_code <= 299:
                 print(f'=> {test}: funcionou ({page.status_code})')
+            
+                worked.append(test)
             elif page.status_code >= 300 and page.status_code <= 399:
                 print(f'~> {test}: redirecionamento ({page.status_code})')
             else:
                 print(f'-> {test}: não funcionou ({page.status_code})')
+
+                dworked.append(test)
         
             i += 1
         except IndexError:
             break
+
+print('')
+
+print('Links que não funcionaram:')
+
+for i in range(0, len(dworked)):
+    print(dworked[i])
+
+print('<- Links que não funcionaram')
+
+print('')
+
+print('Links que funcionaram')
+
+for i in range(0, len(worked)):
+    print(worked[i])
 
 print('<- Programa finalizado')
