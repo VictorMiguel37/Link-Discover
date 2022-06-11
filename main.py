@@ -58,7 +58,7 @@ with open ('texts/wordlist.txt', 'r') as reader:
         except IndexError:
             break
 
-print('<- Teste com subpáginas.')
+print('<- Testes com subpáginas.')
 
 print('')
 
@@ -71,7 +71,7 @@ print('<- Links que não funcionaram.')
 
 print('')
 
-print('Não autorizados')
+print('Não autorizados:')
 
 for i in range(0, len(nauthorized)):
     print(nauthorized[i])
