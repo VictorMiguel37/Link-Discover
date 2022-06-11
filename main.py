@@ -1,10 +1,54 @@
+from os import system
 from sys import exit
 import requests
+
+system('cls')
 
 worked = []      # Funcionou
 dworked = []     # Não funcionou
 nauthorized = [] # Não autorizado
-link = input('Digite a pagina (insira o link completo):')
+
+showWorked = True
+showNotWorked = True
+showNotAuthorized = True
+
+while True:
+    system('cls')
+    
+    link = input('Digite a pagina (insira o link completo, "configs" para configurações):\n')
+
+    if link == 'configs':
+        while True:
+            system('cls')
+
+            print('[0] Sair')
+            print(f'[1] Mostrar páginas que funcionaram ({showWorked})')
+            print(f'[2] Mostrar páginas que não funcionaram ({showNotWorked})')
+            print(f'[3] Mostrar páginas não autorizadas ({showNotAuthorized})')
+
+            choice = int(input())
+
+            match choice:
+                case 1:
+                    if showWorked == True:
+                        showWorked = False
+                    else:
+                        showWorked = True
+                case 2:
+                    if showNotWorked == True:
+                        showNotWorked = False
+                    else:
+                        showNotWorked = True
+                case 3:
+                    if showNotAuthorized == True:
+                        showNotAuthorized = False
+                    else:
+                        showNotAuthorized = True
+                case _:
+                    break
+    else:
+        break
+
 page = requests.get(link)
 
 print(f'Status da página: {page.status_code}')
@@ -62,29 +106,34 @@ print('<- Testes com subpáginas.')
 
 print('')
 
-print('Links que não funcionaram:')
+if showNotWorked == True:
+    print('Links que não funcionaram:')
 
-for i in range(0, len(dworked)):
-    print(dworked[i])
+    for i in range(0, len(dworked)):
+        print(dworked[i])
 
-print('<- Links que não funcionaram.')
+    print('<- Links que não funcionaram.')
 
-print('')
+    print('')
 
-print('Não autorizados:')
+if showNotAuthorized == True:
+    print('Não autorizados:')
 
-for i in range(0, len(nauthorized)):
-    print(nauthorized[i])
+    for i in range(0, len(nauthorized)):
+        print(nauthorized[i])
 
-print('<- Não autorizados.')
+    print('<- Não autorizados.')
 
-print('')
+    print('')
 
-print('Links que funcionaram:')
+if showWorked == True:
+    print('Links que funcionaram:')
 
-for i in range(0, len(worked)):
-    print(worked[i])
+    for i in range(0, len(worked)):
+        print(worked[i])
 
-print('<- Programa finalizado.')
+    print('<- Links que funcionaram.')
+
+print('Fim do programa')
 
 exit()
