@@ -46,7 +46,7 @@ with open ('texts/wordlist.txt', 'r') as reader:
             elif page.status_code >= 300 and page.status_code <= 399:
                 print(f'~> {test}: redirecionamento ({page.status_code})')
             elif page.status_code == 403:
-                print(f'<> {test}: Não autorizado ({page.status_code})')
+                print(f'<> {test}: não autorizado ({page.status_code})')
 
                 nauthorized.append(test)
             else:
