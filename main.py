@@ -1,8 +1,9 @@
 from sys import exit
 import requests
 
-worked = []  # Funcionou
-dworked = [] # Não funcionou
+worked = []      # Funcionou
+dworked = []     # Não funcionou
+nauthorized = [] # Não autorizado
 link = input('Digite a pagina (insira o link completo):')
 page = requests.get(link)
 
@@ -10,7 +11,7 @@ print(f'Status da página: {page.status_code}')
 
 print('')
 
-print('Teste na página inicial')
+print('Teste na página inicial:')
 
 if page.status_code >= 200 and page.status_code <= 299:
     print('=> Página acessada com sucesso!')
@@ -19,7 +20,7 @@ else:
 
     exit()
 
-print('<- teste na página inicial feito')
+print('<- teste na página inicial feito.')
 
 print('')
 
@@ -44,6 +45,10 @@ with open ('texts/wordlist.txt', 'r') as reader:
                 worked.append(test)
             elif page.status_code >= 300 and page.status_code <= 399:
                 print(f'~> {test}: redirecionamento ({page.status_code})')
+            elif page.status_code == 403:
+                print(f'<> {test}: Não autorizado ({page.status_code})')
+
+                nauthorized.append(test)
             else:
                 print(f'-> {test}: não funcionou ({page.status_code})')
 
@@ -53,6 +58,8 @@ with open ('texts/wordlist.txt', 'r') as reader:
         except IndexError:
             break
 
+print('<- Teste com subpáginas.')
+
 print('')
 
 print('Links que não funcionaram:')
@@ -60,13 +67,24 @@ print('Links que não funcionaram:')
 for i in range(0, len(dworked)):
     print(dworked[i])
 
-print('<- Links que não funcionaram')
+print('<- Links que não funcionaram.')
 
 print('')
 
-print('Links que funcionaram')
+print('Não autorizados')
+
+for i in range(0, len(nauthorized)):
+    print(nauthorized[i])
+
+print('<- Não autorizados.')
+
+print('')
+
+print('Links que funcionaram:')
 
 for i in range(0, len(worked)):
     print(worked[i])
 
-print('<- Programa finalizado')
+print('<- Programa finalizado.')
+
+exit()
