@@ -11,6 +11,8 @@ nauthorized = [] # Não autorizado
 showWorked = True
 showNotWorked = True
 showNotAuthorized = True
+clearScreenAfterTests = False
+pauseProgramOnFinal = False
 
 while True:
     system('cls')
@@ -22,9 +24,11 @@ while True:
             system('cls')
 
             print('[0] Sair')
-            print(f'[1] Mostrar páginas que funcionaram ({showWorked})')
+            print(f'[1] Mostrar páginas que funcionaram     ({showWorked})')
             print(f'[2] Mostrar páginas que não funcionaram ({showNotWorked})')
-            print(f'[3] Mostrar páginas não autorizadas ({showNotAuthorized})')
+            print(f'[3] Mostrar páginas não autorizadas     ({showNotAuthorized})')
+            print(f'[4] Limpar tela após testes             ({clearScreenAfterTests})')
+            print(f'[5] Pausar o programa no final          ({pauseProgramOnFinal})')
 
             choice = int(input())
 
@@ -44,6 +48,16 @@ while True:
                         showNotAuthorized = False
                     else:
                         showNotAuthorized = True
+                case 4:
+                    if clearScreenAfterTests == True:
+                        clearScreenAfterTests = False
+                    else:
+                        clearScreenAfterTests = True
+                case 5:
+                    if pauseProgramOnFinal == True:
+                        pauseProgramOnFinal = False
+                    else:
+                        pauseProgramOnFinal = True
                 case _:
                     break
     else:
@@ -106,6 +120,9 @@ print('<- Testes com subpáginas.')
 
 print('')
 
+if clearScreenAfterTests == True:
+    system('cls')
+
 if showNotWorked == True:
     print('Links que não funcionaram:')
 
@@ -132,8 +149,11 @@ if showWorked == True:
     for i in range(0, len(worked)):
         print(worked[i])
 
-    print('<- Links que funcionaram.')
+    print('<- Links que funcionaram.\n')
 
 print('Fim do programa')
+
+if pauseProgramOnFinal == True:
+    system('pause')
 
 exit()
