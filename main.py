@@ -67,9 +67,7 @@ else:
 
     exit()
 
-print('<- teste na página inicial feito.')
-
-print('')
+print('<- teste na página inicial feito.\n')
 
 print('Testes com subpáginas:')
 
@@ -105,37 +103,14 @@ with open ('texts/wordlist.txt', 'r') as reader:
         except IndexError:
             break
 
-print('<- Testes com subpáginas.')
-
-print('')
+print('<- Testes com subpáginas.\n')
 
 if clearScreenAfterTests:
     system('cls')
 
-if showNotWorked:
-    print('Links que não funcionaram:')
-
-    library.functions.showArray(dworked)
-
-    print('<- Links que não funcionaram.')
-
-    print('')
-
-if showNotAuthorized:
-    print('Não autorizados:')
-
-    library.functions.showArray(nauthorized)
-
-    print('<- Não autorizados.')
-
-    print('')
-
-if showWorked:
-    print('Links que funcionaram:')
-
-    library.functions.showArray(worked)
-
-    print('<- Links que funcionaram.\n')
+library.functions.show(showNotWorked, dworked, 'Links que não funcionaram:', '<- Links que não funcionaram.\n')
+library.functions.show(showNotAuthorized, nauthorized, 'Links não autorizados:', '<- Links não autorizados.\n')
+library.functions.show(showWorked, worked, 'Páginas que funcionaram:', '<- Páginas que funcionaram.\n')
 
 print('Fim do programa')
 
