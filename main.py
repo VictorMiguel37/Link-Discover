@@ -1,6 +1,6 @@
+from requests import get
 from os import system
 from sys import exit
-import requests
 
 import library.functions
 
@@ -52,22 +52,7 @@ while True:
     else:
         break
 
-page = requests.get(link)
-
-print(f'Status da página: {page.status_code}')
-
-print('')
-
-print('Teste na página inicial:')
-
-if page.status_code >= 200 and page.status_code <= 299:
-    print('=> Página acessada com sucesso!')
-else:
-    print('Um erro ocorreu: página principal deu uma resposta diferente de 200')
-
-    exit()
-
-print('<- teste na página inicial feito.\n')
+library.functions.firstTest(get(link).status_code)
 
 print('Testes com subpáginas:')
 
@@ -80,7 +65,7 @@ with open ('texts/wordlist.txt', 'r') as reader:
     while True:
         try:
             test = str(link + lines[i])
-            page = requests.get(test)
+            page = get(test)
 
             if page.status_code >= 100 and page.status_code <= 199:
                 print(f'&> {test}: info ({page.status_code})')
