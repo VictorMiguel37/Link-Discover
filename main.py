@@ -2,24 +2,26 @@ from os import system
 from sys import exit
 import requests
 
+import library.functions
+
 system('cls')
 
 worked = []      # Funcionou
 dworked = []     # Não funcionou
 nauthorized = [] # Não autorizado
 
-showWorked = True
-showNotWorked = True
-showNotAuthorized = True
+showWorked            = True
+showNotWorked         = True
+showNotAuthorized     = True
 clearScreenAfterTests = False
-pauseProgramOnFinal = False
+pauseProgramOnFinal   = False
 
 while True:
     system('cls')
     
     link = input('Digite a pagina (insira o link completo, "configs" para configurações):\n')
 
-    if link == 'configs':
+    if link == 'configs' or link == "CONFIGS":
         while True:
             system('cls')
 
@@ -33,33 +35,20 @@ while True:
             choice = int(input())
 
             match choice:
-                case 1:
-                    if showWorked == True:
-                        showWorked = False
-                    else:
-                        showWorked = True
-                case 2:
-                    if showNotWorked == True:
-                        showNotWorked = False
-                    else:
-                        showNotWorked = True
-                case 3:
-                    if showNotAuthorized == True:
-                        showNotAuthorized = False
-                    else:
-                        showNotAuthorized = True
-                case 4:
-                    if clearScreenAfterTests == True:
-                        clearScreenAfterTests = False
-                    else:
-                        clearScreenAfterTests = True
-                case 5:
-                    if pauseProgramOnFinal == True:
-                        pauseProgramOnFinal = False
-                    else:
-                        pauseProgramOnFinal = True
-                case _:
+                case 0:
                     break
+                case 1:
+                    showWorked = library.functions.switchBool(showWorked)
+                case 2:
+                    showNotWorked = library.functions.switchBool(showNotWorked)
+                case 3:
+                    showNotAuthorized = library.functions.switchBool(showNotAuthorized)
+                case 4:
+                    clearScreenAfterTests = library.functions.switchBool(clearScreenAfterTests)
+                case 5:
+                    pauseProgramOnFinal = library.functions.switchBool(pauseProgramOnFinal)
+                case _:
+                    continue
     else:
         break
 
@@ -126,8 +115,7 @@ if clearScreenAfterTests == True:
 if showNotWorked == True:
     print('Links que não funcionaram:')
 
-    for i in range(0, len(dworked)):
-        print(dworked[i])
+    library.functions.showArray(dworked)
 
     print('<- Links que não funcionaram.')
 
@@ -136,8 +124,7 @@ if showNotWorked == True:
 if showNotAuthorized == True:
     print('Não autorizados:')
 
-    for i in range(0, len(nauthorized)):
-        print(nauthorized[i])
+    library.functions.showArray(nauthorized)
 
     print('<- Não autorizados.')
 
@@ -146,8 +133,7 @@ if showNotAuthorized == True:
 if showWorked == True:
     print('Links que funcionaram:')
 
-    for i in range(0, len(worked)):
-        print(worked[i])
+    library.functions.showArray(worked)
 
     print('<- Links que funcionaram.\n')
 
