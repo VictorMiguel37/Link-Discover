@@ -109,10 +109,10 @@ print('<- Testes com subpáginas.')
 
 print('')
 
-if clearScreenAfterTests == True:
+if clearScreenAfterTests:
     system('cls')
 
-if showNotWorked == True:
+if showNotWorked:
     print('Links que não funcionaram:')
 
     library.functions.showArray(dworked)
@@ -121,7 +121,7 @@ if showNotWorked == True:
 
     print('')
 
-if showNotAuthorized == True:
+if showNotAuthorized:
     print('Não autorizados:')
 
     library.functions.showArray(nauthorized)
@@ -130,7 +130,7 @@ if showNotAuthorized == True:
 
     print('')
 
-if showWorked == True:
+if showWorked:
     print('Links que funcionaram:')
 
     library.functions.showArray(worked)
@@ -139,7 +139,7 @@ if showWorked == True:
 
 print('Fim do programa')
 
-if pauseProgramOnFinal == True:
+if pauseProgramOnFinal:
     system('pause')
 
 exit()
